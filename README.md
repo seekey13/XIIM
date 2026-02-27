@@ -2,7 +2,7 @@
 
 A web-based multi-character inventory management addon for Ashita v4 that provides real-time inventory tracking, item organization, and augment decoding for Final Fantasy XI. Tuned specifically for [CatsEyeXI private server](https://www.catseyexi.com/).
 
-### Interactive Demo https://seekey13.github.io/XIIM/
+### Interactive Demo https://seekey13.github.io/XIIM-Dev/
 
 <img alt="image" src="https://github.com/user-attachments/assets/45692b95-e57b-43ed-902a-4f65d4e78224" />
 <img alt="image" src="https://github.com/user-attachments/assets/c0d8ca46-52bd-45ea-a348-1f21f0031e82" />
