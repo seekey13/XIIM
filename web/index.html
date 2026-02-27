@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>XI Item Manager</title>
+    <link rel="icon" type="image/png" href="XIIM.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="header-container">
+        <div class="header-left">
+            <i class="mdi mdi-menu menu-icon"></i>
+            <div class="title-container">
+                <h1>XIIM</h1>
+                <span class="subtitle">XI Item Manager</span>
+            </div>
+        </div>
+        <div class="character-buttons" id="characterButtons">
+            <!-- Character buttons will be dynamically generated -->
+        </div>
+        <div class="search-container">
+            <i class="mdi mdi-magnify search-icon"></i>
+            <input type="text" class="search-bar" placeholder="Search for items...">
+            <i class="mdi mdi-filter filter-icon" id="filterIcon"></i>
+            <div class="filter-panel" id="filterPanel">
+                <div class="filter-panel-header">
+                    <i class="mdi mdi-filter-off filter-clear-icon" id="filterClearIcon"></i>
+                </div>
+                <div class="filter-row">
+                    <div style="display: flex; gap: 12px; align-items: center; width: 100%; min-width: 0;">
+                        <div class="filter-badges">
+                            <div class="filter-badge rare flex" id="filterRare">Rare</div>
+                            <div class="filter-badge exclusive flex" id="filterExclusive">Ex.</div>
+                            <div class="filter-badge augmented flex" id="filterAugmented">Aug.</div>
+                        </div>
+                        <label class="filter-label" style="margin-bottom: 0;">Lv.</label>
+                        <div class="filter-range">
+                            <input type="number" class="filter-input" id="levelMin" placeholder="Min" min="0" max="75">
+                            <input type="number" class="filter-input" id="levelMax" placeholder="Max" min="0" max="75">
+                        </div>
+                    </div>
+                </div>
+                <div class="filter-row">
+                    <div style="display: flex; gap: 8px;">
+                        <div class="filter-badge job-expand" id="filterJobExpand">Jobs</div>
+                        <div class="filter-badge race-expand" id="filterRaceExpand">Races</div>
+                        <div class="filter-badge skill-expand" id="filterSkillExpand">Skills</div>
+                        <div class="filter-badge slot-expand" id="filterSlotExpand">Slots</div>
+                        <div class="filter-badge duplicate-expand" id="filterDuplicate">Duplicates</div>
+                    </div>
+                    <div class="job-badges-container" id="jobBadgesContainer">
+                        <div class="filter-badge job" data-job-value="2" id="filterWAR">WAR</div>
+                        <div class="filter-badge job" data-job-value="4" id="filterMNK">MNK</div>
+                        <div class="filter-badge job" data-job-value="8" id="filterWHM">WHM</div>
+                        <div class="filter-badge job" data-job-value="16" id="filterBLM">BLM</div>
+                        <div class="filter-badge job" data-job-value="32" id="filterRDM">RDM</div>
+                        <div class="filter-badge job" data-job-value="64" id="filterTHF">THF</div>
+                        <div class="filter-badge job" data-job-value="128" id="filterPLD">PLD</div>
+                        <div class="filter-badge job" data-job-value="256" id="filterDRK">DRK</div>
+                        <div class="filter-badge job" data-job-value="512" id="filterBST">BST</div>
+                        <div class="filter-badge job" data-job-value="1024" id="filterBRD">BRD</div>
+                        <div class="filter-badge job" data-job-value="2048" id="filterRNG">RNG</div>
+                        <div class="filter-badge job" data-job-value="4096" id="filterSAM">SAM</div>
+                        <div class="filter-badge job" data-job-value="8192" id="filterNIN">NIN</div>
+                        <div class="filter-badge job" data-job-value="16384" id="filterDRG">DRG</div>
+                        <div class="filter-badge job" data-job-value="32768" id="filterSMN">SMN</div>
+                        <div class="filter-badge job" data-job-value="65536" id="filterBLU">BLU</div>
+                        <div class="filter-badge job" data-job-value="131072" id="filterCOR">COR</div>
+                        <div class="filter-badge job" data-job-value="262144" id="filterPUP">PUP</div>
+                        <div class="filter-badge job" data-job-value="524288" id="filterDNC">DNC</div>
+                        <div class="filter-badge job" data-job-value="1048576" id="filterSCH">SCH</div>
+                        <div class="filter-badge job" data-job-value="2097152" id="filterGEO">GEO</div>
+                        <div class="filter-badge job" data-job-value="4194304" id="filterRUN">RUN</div>
+                    </div>
+                    <div class="race-badges-container" id="raceBadgesContainer">
+                        <div class="filter-badge race" data-race-value="2" id="filterHumeM">Hume M</div>
+                        <div class="filter-badge race" data-race-value="4" id="filterHumeF">Hume F</div>
+                        <div class="filter-badge race" data-race-value="8" id="filterElvaanM">Elvaan M</div>
+                        <div class="filter-badge race" data-race-value="16" id="filterElvaanF">Elvaan F</div>
+                        <div class="filter-badge race" data-race-value="32" id="filterTarutaruM">Taru M</div>
+                        <div class="filter-badge race" data-race-value="64" id="filterTarutaruF">Taru F</div>
+                        <div class="filter-badge race" data-race-value="128" id="filterMithra">Mithra</div>
+                        <div class="filter-badge race" data-race-value="256" id="filterGalka">Galka</div>
+                    </div>
+                    <div class="skill-badges-container" id="skillBadgesContainer">
+                        <div class="filter-badge skill" data-skill-value="1" id="filterH2H">H2H</div>
+                        <div class="filter-badge skill" data-skill-value="2" id="filterDagger">Dagger</div>
+                        <div class="filter-badge skill" data-skill-value="3" id="filterSword">Sword</div>
+                        <div class="filter-badge skill" data-skill-value="4" id="filterGSword">G.Sword</div>
+                        <div class="filter-badge skill" data-skill-value="5" id="filterAxe">Axe</div>
+                        <div class="filter-badge skill" data-skill-value="6" id="filterGAxe">G.Axe</div>
+                        <div class="filter-badge skill" data-skill-value="7" id="filterScythe">Scythe</div>
+                        <div class="filter-badge skill" data-skill-value="8" id="filterPolearm">Polearm</div>
+                        <div class="filter-badge skill" data-skill-value="9" id="filterKatana">Katana</div>
+                        <div class="filter-badge skill" data-skill-value="10" id="filterGKatana">G.Katana</div>
+                        <div class="filter-badge skill" data-skill-value="11" id="filterClub">Club</div>
+                        <div class="filter-badge skill" data-skill-value="12" id="filterStaff">Staff</div>
+                        <div class="filter-badge skill" data-skill-value="25" id="filterArchery">Archery</div>
+                        <div class="filter-badge skill" data-skill-value="26" id="filterMarksmanship">Marksmanship</div>
+                        <div class="filter-badge skill" data-skill-value="27" id="filterThrowing">Throwing</div>
+                        <div class="filter-badge skill" data-skill-value="41" id="filterString">String</div>
+                        <div class="filter-badge skill" data-skill-value="42" id="filterWind">Wind</div>
+                        <div class="filter-badge skill" data-skill-value="45" id="filterHandbell">Handbell</div>
+                        <div class="filter-badge skill" data-skill-value="48" id="filterFishing">Fishing</div>
+                    </div>
+                    <div class="slot-badges-container" id="slotBadgesContainer">
+                        <div class="filter-badge slot" data-slot-value="1" id="filterTwoHanded">Two Handed</div>
+                        <div class="filter-badge slot" data-slot-value="2" id="filterOffHand">Off Hand</div>
+                        <div class="filter-badge slot" data-slot-value="3" id="filterOneHanded">One Handed</div>
+                        <div class="filter-badge slot" data-slot-value="4" id="filterRanged">Ranged</div>
+                        <div class="filter-badge slot" data-slot-value="8" id="filterAmmo">Ammo</div>
+                        <div class="filter-badge slot" data-slot-value="16" id="filterHead">Head</div>
+                        <div class="filter-badge slot" data-slot-value="32" id="filterBody">Body</div>
+                        <div class="filter-badge slot" data-slot-value="64" id="filterHands">Hands</div>
+                        <div class="filter-badge slot" data-slot-value="128" id="filterLegs">Legs</div>
+                        <div class="filter-badge slot" data-slot-value="256" id="filterFeet">Feet</div>
+                        <div class="filter-badge slot" data-slot-value="512" id="filterNeck">Neck</div>
+                        <div class="filter-badge slot" data-slot-value="1024" id="filterWaist">Waist</div>
+                        <div class="filter-badge slot" data-slot-value="6144" id="filterEar">Ear</div>
+                        <div class="filter-badge slot" data-slot-value="24576" id="filterRing">Ring</div>
+                        <div class="filter-badge slot" data-slot-value="32768" id="filterBack">Back</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header-right">
+            <i class="mdi mdi-cog settings-icon"></i>
+        </div>
+    </div>
+    
+    <div id="content">
+        <div class="loading">Loading inventory data...</div>
+    </div>
+    <div class="tooltip" id="tooltip"></div>
+    <div class="drag-ghost" id="dragGhost"></div>
+    <div class="progress-bar-container" id="progressBarContainer">
+        <div class="progress-bar-label" id="progressBarLabel">0</div>
+        <div class="progress-bar-wrapper">
+            <div class="progress-bar"></div>
+        </div>
+    </div>
+    <div class="context-menu" id="contextMenu">
+        <div class="context-menu-item" id="moveMenuItem">
+            <i class="mdi mdi-arrow-right-bold"></i>
+            <span>Move to...</span>
+        </div>
+        <div class="context-menu-item" id="consolidateMenuItem">
+            <i class="mdi mdi-content-copy"></i>
+            <span>Consolidate</span>
+        </div>
+        <div class="context-menu-item" id="setBazaarMenuItem">
+            <i class="mdi mdi-tag"></i>
+            <span>Set Bazaar Price</span>
+        </div>
+        <div class="context-menu-item" id="tagAsTrashMenuItem">
+            <i class="mdi mdi-trash-can"></i>
+            <span>Tag as Trash</span>
+        </div>
+        <div class="context-menu-item" id="removeFromTrashMenuItem">
+            <i class="mdi mdi-trash-can-outline"></i>
+            <span>Remove from Trash</span>
+        </div>
+        <div class="context-menu-item" id="wikiMenuItem">
+            <i class="mdi mdi-wikipedia"></i>
+            <span>Wiki this...</span>
+        </div>
+        <div class="context-menu-item" id="expandAllMenuItem">
+            <i class="mdi mdi-chevron-up"></i>
+            <span>Expand All</span>
+        </div>
+        <div class="context-menu-item" id="collapseAllMenuItem">
+            <i class="mdi mdi-chevron-down"></i>
+            <span>Collapse All</span>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
